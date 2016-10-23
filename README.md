@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -26,3 +27,6 @@ Things you may want to cover:
 =======
 # week2
 >>>>>>> 7bb3d7dc46ef7e110168fc387e788f30bfa9732d
+=======
+# AssociationsMigrations
+>>>>>>> 65506a9fce8bf9fa78eec12c11efe6b539c04eb8
