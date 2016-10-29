@@ -10,11 +10,13 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    @recipe_category = @recipe.categoryrecipes
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+  
     
     @all_categories = Category.all
     
@@ -23,12 +25,22 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    
+     @all_categories = Category.all
+    
+    @recipe_category = @recipe.categoryrecipes.build
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+    
+    params[:categories][:id].each do |category|
+      if !category.empty?
+        @recipe.categoryrecipes.build(:category_id => category)
+      end
+    end
 
     respond_to do |format|
       if @recipe.save
@@ -46,6 +58,14 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
+        
+      @recipe.categories =[]
+      params[:categories][:id].each do |category|
+        if !category.empty?
+          @recipe.categories << Category.find(category)
+        end
+      end
+        
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
@@ -75,4 +95,6 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipe).permit(:name)
     end
+    
+    
 end

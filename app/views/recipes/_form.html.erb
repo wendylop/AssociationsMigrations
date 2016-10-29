@@ -18,7 +18,7 @@
   
      <%= fields_for(@recipe_category) do |ab| %>
     <div class="field">
-      <%= ab.label "All Category" %><br/>
+      <%= ab.label "All Category" %><br />
       <%= collection_select(:categories, :id, @all_categories, :id, :name, {}, {:multiple => true}) %>
     </div>
   <% end %>
