@@ -16,8 +16,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-  
-    
+     
     @all_categories = Category.all
     
     @recipe_category = @recipe.categoryrecipes.build
