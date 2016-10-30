@@ -9,4 +9,10 @@ class RecipeTest < ActiveSupport::TestCase
   recipe = Recipe.new
   assert_not recipe.save, "Saved the Recipe without a Name"
 end
+
+ test "a recipe is created with name, and category" do 
+    recipe = Recipe.new :name => "Zucchinisalat"
+                         
+    assert recipe.save
+end
 end
