@@ -48,8 +48,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-gem "minitest-rails"
-
 group :test do
-  gem "minitest-rails-capybara"
+  # see https://github.com/jnicklas/capybara#setup
+  gem 'capybara'
+  gem 'launchy'
 end
