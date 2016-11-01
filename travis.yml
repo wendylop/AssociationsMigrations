@@ -1,0 +1,11 @@
+language: ruby
+services:
+- postgresql
+env:
+- DB=postgres
+- DB=sqlite
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+script:
+- bin/rails db:migrate RAILS_ENV=test
+- bundle exec rails test

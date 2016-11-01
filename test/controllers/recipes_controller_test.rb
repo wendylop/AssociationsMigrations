@@ -45,4 +45,5 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to recipes_url
   end
+  
 end
