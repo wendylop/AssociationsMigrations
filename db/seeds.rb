@@ -12,3 +12,5 @@ Recipe.create(name: "Mediterranes Knoblauchhähnchen", categories:"Poultry")
 Recipe.create(name: "Ananas-Drink ", categories:"Drinks")
 Recipe.create(name: "Kartoffeltortilla", categories:"Vegetables")
 Recipe.create(name: "Eierkuchen", categories:"desserts")
+
+
