@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize, except: [:show, :index]
   # GET /recipes
   # GET /recipes.json
   def index
@@ -16,17 +16,17 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-     
+
     @all_categories = Category.all
-    
+
     @recipe_category = @recipe.categoryrecipes.build
   end
 
   # GET /recipes/1/edit
   def edit
-    
-     @all_categories = Category.all
-    
+
+    @all_categories = Category.all
+
     @recipe_category = @recipe.categoryrecipes.build
   end
 
@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-    
+
     params[:categories][:id].each do |category|
       if !category.empty?
         @recipe.categoryrecipes.build(:category_id => category)
@@ -57,14 +57,14 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        
-      @recipe.categories =[]
-      params[:categories][:id].each do |category|
-        if !category.empty?
-          @recipe.categories << Category.find(category)
+
+        @recipe.categories =[]
+        params[:categories][:id].each do |category|
+          if !category.empty?
+            @recipe.categories << Category.find(category)
+          end
         end
-      end
-        
+
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
@@ -85,15 +85,25 @@ class RecipesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def recipe_params
-      params.require(:recipe).permit(:name)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def recipe_params
+    params.require(:recipe).permit(:user_id, :name)
+  end
+
+  def authorize
+    if current_user.nil?
+      redirect_to login_url, alert: "Not authorized! Please log in."
+    #else ---> wenn unsere Cookbuch mit user funtion wäre
+    # if @recipe != current_user
+    #   redirect_to root_path, alert: "Not authorized! Only #{@current_user} has access to this post."
+    #  end
     end
-    
-    
+  end
+
 end

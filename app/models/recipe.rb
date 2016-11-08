@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
-  validates :name, presence: true
+  validates :name, 
+             presence: true
 
   has_many :categoryrecipes
   has_many :categories, through: :categoryrecipes
