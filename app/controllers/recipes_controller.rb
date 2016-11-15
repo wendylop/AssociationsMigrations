@@ -99,7 +99,7 @@ class RecipesController < ApplicationController
   def authorize
     if current_user.nil?
       redirect_to login_url, alert: "Not authorized! Please log in."
-    #else ---> wenn unsere Cookbuch mit user funtion wäre
+    #else ---> wenn unsere Cookbuch mit Rezept-user funtion wäre
     # if @recipe != current_user
     #   redirect_to root_path, alert: "Not authorized! Only #{@current_user} has access to this post."
     #  end

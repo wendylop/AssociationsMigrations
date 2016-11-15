@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :professional_recipes
+  
+  get "professional_recipes/Search_by_reviews"
+  
+  
   #get 'sessions/new'
 
   #get 'sessions/create'

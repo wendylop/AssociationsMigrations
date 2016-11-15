@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @professional_recipe.nombre %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @professional_recipe.description %>
+</p>
+
+<p>
+  <strong>Reviews:</strong>
+  <%= @professional_recipe.reviews %>
+</p>
+
+<%= link_to 'Edit', edit_professional_recipe_path(@professional_recipe) %> |
+<%= link_to 'Back', professional_recipes_path %>

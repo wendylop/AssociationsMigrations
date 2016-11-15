@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Professional Recipes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Description</th>
+      <th>Reviews</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @professional_recipes.each do |professional_recipe| %>
+      <tr>
+        <td><%= professional_recipe.nombre %></td>
+        <td><%= professional_recipe.description %></td>
+        <td><%= professional_recipe.reviews %></td>
+        <td><%= link_to 'Show', professional_recipe %></td>
+        <td><%= link_to 'Edit', edit_professional_recipe_path(professional_recipe) %></td>
+        <td><%= link_to 'Destroy', professional_recipe, method: :delete, data: { confirm: 'Are you sure?' }, 
+		:remote => true, :class => 'delete_professional_recipe' %></td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Professional Recipe', new_professional_recipe_path %>
+
+<br>
+
+<hr />
+
+<br>
+<%= form_tag do %>
+   <%= label_tag "reviews", "Search by reviews" %>
+   <%= text_field_tag "reviews", "" %>
+   <%= submit_tag "Search", {:type => "button", :id => "search_button"} %>
+   <div id="answer"></div>
+<% end %>
+<%= javascript_include_tag "Search_by_reviews" %>

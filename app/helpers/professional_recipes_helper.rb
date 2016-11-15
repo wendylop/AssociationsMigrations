@@ -1,0 +1,2 @@
+module ProfessionalRecipesHelper
+end
